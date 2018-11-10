@@ -1,37 +1,26 @@
 # -*- coding: utf-8 -*-
-import json
-import requests
 
+import requests
+import json
 
 # url = 'http://partners.api.skyscanner.net/apiservices/geo/v1.0?apikey=ha626660336299059327728735244347'
 
 # takes in url and returns dictionary pulled from API
-def geo(url):
-    geoData = requests.get(url)
-    geoDict = geoData.json()
-    return geoDict
+class one:
+    def __init__(self, market, outbound, destination, direct=false, currency):
+        self.market = market
+        self.outbound = outbound
+        self.destination = destination
+        self.direct = direct
+        self.currency = currency
 
+    # Function returns browseQuotes query result
+    def getQuotes(url):
+        pulledData = requests.get(url)
+        pulledDict = pulledData.json()
+        return pulledDict
 
-
-
-"""
-with open('continents.txt', mode='w') as file:
-	for element in geoDict["Continents"]:
-		for element2 in element['Countries']:
-			file.write(element["Id"] + " " + element["Name"])
-			file.write('\n')
-"""
-"""
-for element in geoDict['Continents']:
-	print(element['Countries'])
-"""
-"""
-with open('geo.txt', mode='w') as file:
-	for element in geoDict:
-		file.write(json.dumps(element, ensure_ascii=False))
-		file.write('\n')
-"""
-"""
-for value1 in localesDict.values():
-	print(value2.type(), end='\n')
-"""
+    # Function prepares URL to pass to getQuotes
+    # Uses variables passed to class to determine which parameters are relevant
+    # Has to return url (query) which will return proper record
+    def prepareURL(self):
