@@ -8,7 +8,7 @@ import json
 # takes in url and returns dictionary pulled from API
 class browse:
     def __init__(self, market, currency, outbound, inbound,
-                 dateStart, dateStop, direct=false, apikey):
+                 apikey, direct= False):
         # /GB/eur/en-GB/uk/pl/anytime/anytime?apikey=ha626660336299059327728735244347'
         self.market = market
         self.outbound = outbound
@@ -16,15 +16,12 @@ class browse:
         self.direct = direct
         self.currency = currency
         self.apikey = apikey
-        self.dateStart = dateStart
-        self.dateStop = dateStop
-        self.dateReturn = ''
 
     # Method returns browseQuotes query result
     # That is dictionary with four entries:
     # Quotes, Places, Carriers, Currencies. Each of these contains a list of dictionaries.
     #
-    def getQuotes(url):
+    def getQuotes(self, url):
         pulledData = requests.get(url)
         pulledDict = pulledData.json()
         return pulledDict
@@ -33,7 +30,7 @@ class browse:
     # Method prepares URL to pass to getQuotes
     # Uses variables passed to class to determine which parameters are relevant
     # Has to return url (query) which will return proper record
-    def prepareURL(self):
+    def prepareURL(self, outboundDate):
         # Sample URL part two
         # /GB/eur/en-GB/uk/pl/anytime/anytime?apikey=ha626660336299059327728735244347'
 
@@ -61,4 +58,5 @@ class browse:
 
     # What will be returned from retrievedData will be encrypted with scyscanner's IDs.
     # This method is to decrypt it; keys are provided in the dictionary returned by getQuotes.
-    #def decryptIDs(self, ?):
+    def decryptIDs(self):
+        pass
