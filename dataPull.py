@@ -21,6 +21,9 @@ class browse:
         self.dateReturn = ''
 
     # Method returns browseQuotes query result
+    # That is dictionary with four entries:
+    # Quotes, Places, Carriers, Currencies. Each of these contains a list of dictionaries.
+    #
     def getQuotes(url):
         pulledData = requests.get(url)
         pulledDict = pulledData.json()
@@ -46,5 +49,16 @@ class browse:
         return url
 
     # Method is passed dictionary from getQuotes. Returns the data it was supposed to retrieve,
-    # as dictionary.
+    # as list (possibly with dictionaries
     def retrieveData(self, data):
+        flights = []
+        for element in data['Quotes']:
+            # appends ONLY prices of the list. In the future other features should be added
+            # carriers, exact dates, etc.
+            flights.append(element['MinPrice'])
+        flights.sort()
+        return flights
+
+    # What will be returned from retrievedData will be encrypted with scyscanner's IDs.
+    # This method is to decrypt it; keys are provided in the dictionary returned by getQuotes.
+    #def decryptIDs(self, ?):
