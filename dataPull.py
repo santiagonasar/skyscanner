@@ -20,14 +20,14 @@ class browse:
         self.dateStop = dateStop
         self.dateReturn = ''
 
-    # Function returns browseQuotes query result
+    # Method returns browseQuotes query result
     def getQuotes(url):
         pulledData = requests.get(url)
         pulledDict = pulledData.json()
         return pulledDict
 
 
-    # Function prepares URL to pass to getQuotes
+    # Method prepares URL to pass to getQuotes
     # Uses variables passed to class to determine which parameters are relevant
     # Has to return url (query) which will return proper record
     def prepareURL(self):
@@ -44,3 +44,7 @@ class browse:
         url += '/'
         url += '?apikey=' + self.apikey
         return url
+
+    # Method is passed dictionary from getQuotes. Returns the data it was supposed to retrieve,
+    # as dictionary.
+    def retrieveData(self, data):
