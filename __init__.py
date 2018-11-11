@@ -12,4 +12,4 @@ with open('api.txt', mode='r') as file:
     apikey = file.read()
 
 one = sc.flight(market, currency, outbound, inbound, dateStart, dateStop, apikey,False)
-print(one.cheapestFlight('2018-12-20'))
+print(one.searchFlights())

@@ -2,6 +2,9 @@ import json
 import requests
 import time
 from dataPull import Browse
+from datetime import datetime
+from datetime import timedelta
+
 
 # URL to download json data from API
 # url = 'http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/GB/eur/en-GB/uk/pl/anytime/anytime?apikey=
@@ -31,8 +34,15 @@ class flight():
         pass
 
     # This method will run
-    def searchFlights(self, start, stop):
-        pass
+    def searchFlights(self):
+        start = datetime.strptime(self.dateStart, '%Y-%m-%d')
+        stop = datetime.strptime(self.dateStop, '%Y-%m-%d')
+        flights = {}
+        while start <= stop:
+            dateString = start.strftime("%Y-%m-%d")
+            flights[dateString]=self.cheapestFlight(dateString)
+            start = start + timedelta(days=1)
+        return flights
 
     # def cheapestFlight(self, date):
     #     """
@@ -213,7 +223,7 @@ class flight():
 
                 # For every quote in quotes_dic
                 for quote in request_rest_dic["Quotes"]:
-                    #time.sleep(0.01)
+                    time.sleep(0.12)
                     # If quote's origin-destination same as "basis_loc":
                     if (quote["OutboundLeg"]["OriginId"] == basis_org_loc and
                         quote["OutboundLeg"]["DestinationId"] == basis_dest_loc):
@@ -234,4 +244,4 @@ class flight():
                             #raise SystemExit("STOP EVERYTHING")
             print()
 
-            
+        return minnest_price
