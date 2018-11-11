@@ -6,7 +6,7 @@ import json
 # url = 'http://partners.api.skyscanner.net/apiservices/geo/v1.0?apikey=ha626660336299059327728735244347'
 
 # takes in url and returns dictionary pulled from API
-class browse:
+class Browse:
     def __init__(self, market, currency, outbound, inbound,
                  apikey, direct= False):
         # /GB/eur/en-GB/uk/pl/anytime/anytime?apikey=ha626660336299059327728735244347'

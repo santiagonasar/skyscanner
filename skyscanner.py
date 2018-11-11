@@ -1,9 +1,9 @@
 import json
 import requests
-from dataPull import browse
+from dataPull import Browse
 
 # URL to download json data from API
-# url = 'http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/GB/eur/en-GB/uk/pl/anytime/anytime?apikey=ha626660336299059327728735244347'
+# url = 'http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/GB/eur/en-GB/uk/pl/anytime/anytime?apikey=
 
 class flight():
     # Initialization of route.
@@ -11,7 +11,7 @@ class flight():
     # And which apikey should be used.
     def __init__(self, market, currency, outbound, inbound,
                  dateStart, dateStop, apikey, direct= False):
-        # /GB/eur/en-GB/uk/pl/anytime/anytime?apikey=ha626660336299059327728735244347'
+        # /GB/eur/en-GB/uk/pl/anytime/anytime?apikey=api
         self.market = market
         self.outbound = outbound
         self.inbound = inbound
@@ -21,7 +21,7 @@ class flight():
         self.dateStart = dateStart
         self.dateStop = dateStop
         self.dateReturn = ''
-        self.pull = browse(self.market, self.currency, self.outbound, self.inbound,
+        self.pull = Browse(self.market, self.currency, self.outbound, self.inbound,
                       self.apikey, False)
 
     # Within this method, data storing for single observed flight will be handled.
