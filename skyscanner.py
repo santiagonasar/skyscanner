@@ -38,5 +38,12 @@ class flight():
         return cheapest[0]
 
     # This method will run
-    def searchFlights(self, start, stop):
-        pass
+    def searchFlights(self):
+        start = datetime.strptime(self.dateStart, '%Y-%m-%d')
+        stop = datetime.strptime(self.dateStop, '%Y-%m-%d')
+        flights = {}
+        while start <= stop:
+            dateString = start.strftime("%Y-%m-%d")
+            flights[dateString]=self.cheapestFlight(dateString)
+            start = start + timedelta(days=1)
+        return flights
